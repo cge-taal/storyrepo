@@ -1,8 +1,37 @@
 # storyrepo
 
-An attempt to get the simplest setup working with the following ingradients
+An attempt to get the simplest setup working with the following ingredients
 
 - turborepo
 - pnpm
 - sveltekit
 - storybook
+
+## Steps
+
+```bash
+npx create-turbo@latest -e with-svelte storyrepo # choose pnpm
+cd storyrepo/apps
+npm create svelte@latest storybook # Choose Library project and TS. Don't add Svelte5
+cd storybook
+```
+
+Now try to initialise storybook inside [apps/storybook](apps/storybook/)
+
+```bash
+pnpm dlx storybook@latest init --type sveltekit
+```
+
+The step above introduces the following error
+
+```bash
+/Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js:2
+const pLimit = require('p-limit');
+               ^
+
+Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-limit/index.js from /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js not supported.
+Instead change the require of /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-limit/index.js in /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js to a dynamic import() which is available in all CommonJS modules.
+    at Object.<anonymous> (/Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js:2:16) {
+  code: 'ERR_REQUIRE_ESM'
+}
+```
