@@ -35,3 +35,24 @@ Instead change the require of /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_
   code: 'ERR_REQUIRE_ESM'
 }
 ```
+
+## Storybook Environment Info
+
+`npx storybook@latest info` gives
+
+```bash
+Storybook Environment Info:
+
+  System:
+    OS: macOS 13.5.1
+    CPU: (10) arm64 Apple M1 Pro
+    Shell: 5.9 - /bin/zsh
+  Binaries:
+    Node: 20.14.0 - /usr/local/bin/node
+    Yarn: 1.22.19 - /opt/homebrew/bin/yarn
+    npm: 10.7.0 - /usr/local/bin/npm
+    pnpm: 9.4.0 - /opt/homebrew/bin/pnpm <----- active
+  Browsers:
+    Safari: 16.6
+```
+
