@@ -14,27 +14,33 @@ npx create-turbo@latest -e with-svelte storyrepo # choose pnpm
 cd storyrepo/apps
 npm create svelte@latest storybook # Choose Library project and TS. Don't add Svelte5
 cd storybook
-```
-
-Now try to initialise storybook inside [apps/storybook](apps/storybook/)
-
-```bash
 pnpm dlx storybook@latest init --type sveltekit
 ```
 
-The step above introduces the following error
+At this point there is an error. Just ctrl-c and replace [apps/storybook/.storybook/main.ts](apps/storybook/.storybook/main.ts) with
 
-```bash
-/Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js:2
-const pLimit = require('p-limit');
-               ^
+```ts
+import type { StorybookConfig } from '@storybook/sveltekit';
 
-Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-limit/index.js from /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js not supported.
-Instead change the require of /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-limit/index.js in /Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js to a dynamic import() which is available in all CommonJS modules.
-    at Object.<anonymous> (/Users/cge/dev4/storyrepo/node_modules/.pnpm/node_modules/p-locate/index.js:2:16) {
-  code: 'ERR_REQUIRE_ESM'
-}
+const config: StorybookConfig = {
+	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|ts|svelte)'],
+	addons: [
+		'@storybook/addon-svelte-csf',
+		'@storybook/addon-links',
+		'@storybook/addon-essentials',
+		'@chromatic-com/storybook',
+		'@storybook/addon-interactions'
+	],
+	framework: {
+		name: '@storybook/sveltekit',
+		options: {}
+	}
+};
+export default config;
 ```
+
+Then add another story in `apps/storybook/src/stories/components/button` to demonstrate support for `<slot/>`s, following [https://storybook.js.org/addons/@storybook/addon-svelte-csf](https://storybook.js.org/addons/@storybook/addon-svelte-csf)
+
 
 ## Storybook Environment Info
 
@@ -51,7 +57,7 @@ Storybook Environment Info:
     Node: 20.14.0 - /usr/local/bin/node
     Yarn: 1.22.19 - /opt/homebrew/bin/yarn
     npm: 10.7.0 - /usr/local/bin/npm
-    pnpm: 9.4.0 - /opt/homebrew/bin/pnpm <----- active
+    pnpm: 9.5.0 - /opt/homebrew/bin/pnpm <----- active
   Browsers:
     Safari: 16.6
 ```
