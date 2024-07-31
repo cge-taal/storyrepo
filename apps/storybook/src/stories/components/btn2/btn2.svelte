@@ -1,9 +1,8 @@
 <script>
 	export let rounded = true;
-	export let onClick;
 </script>
 
-<button class="button" class:rounded on:click={onClick}>
+<button class="button" class:rounded on:click>
 	<slot />
 </button>
 

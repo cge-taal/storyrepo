@@ -1,13 +1,13 @@
-<script context="module">
-	import Button from './button.svelte';
+<script context="module" lang="ts">
+	import { Button3 } from '@repo/ui';
 
 	export const meta = {
-		title: 'Btn2',
-		component: Button
+		title: 'Btn3',
+		component: Button3
 	};
 </script>
 
-<script>
+<script lang="ts">
 	import { Story, Template } from '@storybook/addon-svelte-csf';
 
 	let count = 0;
@@ -18,9 +18,9 @@
 
 <Template let:args>
 	<!--👇 'on:click' allows to forward event to addon-actions  -->
-	<Button {...args} on:click on:click={handleClick}>
+	<Button3 {...args} on:click on:click={handleClick}>
 		You clicked: {count}
-	</Button>
+	</Button3>
 </Template>
 
 <Story name="Rounded" args={{ rounded: true }} />
@@ -29,5 +29,5 @@
 
 <!-- Dynamic snippet should be disabled for this story -->
 <Story name="Button No Args">
-	<Button>Label</Button>
+	<Button3>Label</Button3>
 </Story>
